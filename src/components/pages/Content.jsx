@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
+import Timeline from './Timeline';
 
 export default function Content() {
   const [userPrompt, setUserPrompt] = useState('');
-  const [response, setResponse] = useState();
+  const [responses, setResponses] = useState([]);
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -21,7 +22,8 @@ export default function Content() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
-      setResponse(data.response);
+      setResponses(responses.concat(data.response));
+      console.log(responses);
       setUserPrompt('');
     } catch (error) {
       // Consider implementing your own error handling logic here
@@ -44,8 +46,8 @@ export default function Content() {
           />
           <input type="submit" value="Generate Response" />
         </form>
-        <div>{response}</div>
       </main>
+      <Timeline responses={responses}/>
     </div>
   );
 }
