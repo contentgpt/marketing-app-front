@@ -4,7 +4,12 @@ import Timeline from './Timeline';
 
 export default function Content() {
   const [userPrompt, setUserPrompt] = useState('');
-  const [responses, setResponses] = useState([]);
+  const [messages, setMessages] = useState([
+    { 
+      'role': 'system', 
+      'content': 'You are an expert marketing content writer for small businesses in the North American outdoor industry.' 
+    },
+  ]);
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -14,16 +19,15 @@ export default function Content() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userPrompt }),
+        body: JSON.stringify({ messages: [...messages, { 'role': 'user', 'content': 'I am a hardcoded user prompt' }] }),
       });
 
       const data = await response.json();
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-
-      setResponses(responses.concat(data.response));
-      console.log(responses);
+      console.log('data', data);
+      setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
       setUserPrompt('');
     } catch (error) {
       // Consider implementing your own error handling logic here
@@ -31,7 +35,8 @@ export default function Content() {
       alert(error.message);
     }
   }
-
+  
+  console.log(messages);
   return (
     <div>
       <main>
@@ -47,7 +52,7 @@ export default function Content() {
           <input type="submit" value="Generate Response" />
         </form>
       </main>
-      <Timeline responses={responses}/>
+      <Timeline messages={messages}/>
     </div>
   );
 }
