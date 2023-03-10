@@ -4,12 +4,7 @@ import Timeline from './Timeline';
 
 export default function Content() {
   const [userPrompt, setUserPrompt] = useState('');
-  const [messages, setMessages] = useState([
-    { 
-      'role': 'system', 
-      'content': 'You are an expert marketing content writer for small businesses in the North American outdoor industry.' 
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   async function onSubmit(event) {
     event.preventDefault();
