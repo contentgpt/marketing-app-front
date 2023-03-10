@@ -13,20 +13,21 @@ export default function Content() {
 
   async function onSubmit(event) {
     event.preventDefault();
+    setMessages(prev => [...prev, { role: 'user', content: userPrompt }]);
     try {
       const response = await fetch('http://localhost:7890/api/v1/responses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: [...messages, { 'role': 'user', 'content': 'I am a hardcoded user prompt' }] }),
+        body: JSON.stringify({ messages: [...messages, { 'role': 'user', 'content': `${userPrompt}` }] }),
       });
 
       const data = await response.json();
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-      console.log('data', data);
+      
       setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
       setUserPrompt('');
     } catch (error) {
@@ -35,8 +36,7 @@ export default function Content() {
       alert(error.message);
     }
   }
-  
-  console.log(messages);
+  console.log('messages', messages);
   return (
     <div>
       <main>
