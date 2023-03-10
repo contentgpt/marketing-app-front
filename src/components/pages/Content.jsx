@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function Content() {
-  const [userPrompt, setUserPrompt] = useState('Prompt the AI');
+  const [userPrompt, setUserPrompt] = useState('');
   const [response, setResponse] = useState();
 
   async function onSubmit(event) {
@@ -20,7 +20,7 @@ export default function Content() {
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-      
+
       setResponse(data.response);
       setUserPrompt('');
     } catch (error) {
@@ -42,7 +42,7 @@ export default function Content() {
             value={userPrompt}
             onChange={(e) => setUserPrompt(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Generate Response" />
         </form>
         <div>{response}</div>
       </main>
