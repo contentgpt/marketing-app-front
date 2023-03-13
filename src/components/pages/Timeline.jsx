@@ -1,10 +1,11 @@
 import React from 'react';
+import './Timeline.css';
 
 export default function Timeline({ messages }) {
-  console.log('timeline messages', messages);
+  
   return (
     <div>{messages.map((message) => (
-      <div key={message.content}>{message.content}
+      <div className={`${message.role}`} key={message.content}>{message.content}
       </div>
     ))}
     </div>
