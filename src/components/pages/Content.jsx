@@ -38,7 +38,6 @@ export default function Content() {
     } else {
       return;
     }
-   // else do nothing
   }, [messages, userPrompt]);
 
   async function onSubmit(event) {
