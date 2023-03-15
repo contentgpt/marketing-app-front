@@ -1,7 +1,7 @@
 import React from 'react';
-import './Timeline.css';
+import './Conversation.css';
 
-export default function Timeline({ messages }) {
+export default function Conversation({ messages }) {
   
   return (
     <>
