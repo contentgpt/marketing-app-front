@@ -9,11 +9,12 @@ export default function Auth() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+//   const [user, setUser] = useState('');
   const { user, setUser } = useContext(UserContext);
   const { type } = useParams();
 
   if (user) {
-    return redirect('./creator/Creator');
+    return redirect('/creator');
   }
 
   const submitAuth = async () => {
@@ -33,7 +34,7 @@ export default function Auth() {
         <div className="auth">
           <label className='labels'>First Name</label>
           <input className='labels' type="first-name" placeholder="first name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          <label className='labels'>First Name</label>
+          <label className='labels'>Last Name</label>
           <input className='labels' type="last-name" placeholder="last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
           <label className='labels'>EMAIL</label>
           <input className='labels' type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />

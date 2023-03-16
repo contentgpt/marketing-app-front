@@ -12,7 +12,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/auth/:type" element={<Auth />} />
-          <Route path="/" element={<Creator />} />
+          <Route path="/creator" element={<Creator />} />
+          <Route exact path="/" to="/auth/:type" />
         </Routes>
         <Footer />
       </div>
