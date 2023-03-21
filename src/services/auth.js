@@ -100,20 +100,20 @@ export function signOutUser() {
 //   return response.user;
 // }
 
-export async function getUser() {
-  const response = await fetch('http://localhost:7890/api/v1/users/me', {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      // Authorization: `bearer ${jwt.token}`
-    },
-  });
+// export async function getUser() {
+//   const response = await fetch('http://localhost:7890/api/v1/users/me', {
+//     method: 'GET',
+//     headers: {
+//       Accept: 'application/json',
+//       // Authorization: `bearer ${jwt.token}`
+//     },
+//   });
 
-  if (!response.ok) {
-    throw new Error(`Error in getUser: ${response.statusText} ${response.status}`);
-  }
+//   if (!response.ok) {
+//     throw new Error(`Error in getUser: ${response.statusText} ${response.status}`);
+//   }
 
-  const json = await response.json();
-  console.log('response in auth.js', json);
-  return json;
-}
+//   const json = await response.json();
+//   console.log('response in auth.js', json);
+//   return json;
+// }
