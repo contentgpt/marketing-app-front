@@ -6,11 +6,8 @@ const UserContext = createContext();
 const token = !!getToken();
 
 const UserProvider = ({ children }) => {
-  //const currentUser = getUser();
   const [user, setUser] = useState(token);
-  console.log('user', user);
-  // setUser(currentUser);
-  //console.log('currentUser in context', currentUser);
+  console.log('userToken in Context', user);
 
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 };
